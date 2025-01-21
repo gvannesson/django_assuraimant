@@ -12,6 +12,6 @@ class Client(models.Model):
     smoker=models.BooleanField(verbose_name='fumeur')
     sex=models.BooleanField(verbose_name='sexe')
     children=models.PositiveIntegerField(verbose_name="nombre d'enfants", validators=[MinValueValidator(0), MaxValueValidator(20)])
-    last_charge_prediction=models.FloatField(verbose_name="dernière prédiction", round=2)
+    last_charge_prediction=models.FloatField(verbose_name="dernière prédiction")
 
 # Create your models here.
