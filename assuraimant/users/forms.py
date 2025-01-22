@@ -14,3 +14,9 @@ class CustomCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
         fields = UserCreationForm.Meta.fields
+
+
+# class CustomProfileForm(forms.ModelForm):
+#     class Meta:
+#         model=User
+#         fields=['Birth Date', 'Weight', 'Height', 'Region', 'Smoker', 'Sex', 'Number of children']

@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView, FormView
 from django.views.generic.edit import CreateView, FormView
 from django.urls import reverse_lazy
 from django.shortcuts import render
@@ -18,16 +18,19 @@ class CreateUserViews(CreateView):
     # context_object_name='signup' #le nom utilisé dans le template
     success_url = reverse_lazy('login') #redirection après la création
 
-    # def get_queryset(self):
-    #     password = self.request.GET.get('password')
-    #     password = User.set_password(password)
-    #     self.request.GET['password']=password
-    #     return self.request
-
-
 
 class HomeView(TemplateView):
     template_name = 'users/home.html' #spécifie le template
 
 # class LogInView(TemplateView):
 #     template_name = 'users/login.html' #spécifie le template
+
+class DisplayProfileView(TemplateView):
+    model=User
+    template_name='users/profile.html'
+
+
+
+# class CustomProfileView(TemplateView):
+#     model = User
+#     template_name = 'users/profile.html'
