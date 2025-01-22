@@ -39,8 +39,6 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'users',
     'assuraimant',
-    'login',
-    'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
