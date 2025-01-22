@@ -129,6 +129,8 @@ STATICFILES_DIRS= [
     BASE_DIR / STATIC_URL
 ]
 
+LOGIN_REDIRECT_URL='/'
+
 AUTH_USER_MODEL = 'assuraimant.User'
 
 # Default primary key field type

@@ -1,7 +1,16 @@
 from django import forms
 from assuraimant.models import User
+from django.contrib.auth.forms import UserCreationForm
 
-class UserForm(forms.ModelForm):
-    class Meta:
+
+
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=65)
+    password = forms.CharField(max_length=65, widget=forms.PasswordInput)
+    
+class CustomCreationForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
         model = User
-        fields = ['username', 'email','password']
+        fields = UserCreationForm.Meta.fields
