@@ -12,10 +12,13 @@ from django.contrib.auth.forms import UserCreationForm
 class CreateUserViews(CreateView):
     model = User #spécifie le modèle
     form_class = UserForm
-    template_name = 'user/signup.html' #spécifie le template
+    template_name = 'users/signup.html' #spécifie le template
     context_object_name='signup' #le nom utilisé dans le template
 
 
 
 class HomeView(TemplateView):
     template_name = 'users/home.html' #spécifie le template
+
+class LogInView(TemplateView):
+    template_name = 'users/user.html' #spécifie le template
