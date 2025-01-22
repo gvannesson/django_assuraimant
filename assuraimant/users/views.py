@@ -1,13 +1,10 @@
 from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView, FormView
-from django.urls import reverse_lazy
-from django.shortcuts import render
+from django.contrib.auth.views import LogoutView
 from assuraimant.models import User
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
-from django.contrib.auth.forms import UserCreationForm
 from .forms import CustomCreationForm
-from django.contrib.auth import get_user_model
 
 
 
