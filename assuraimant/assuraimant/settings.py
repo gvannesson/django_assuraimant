@@ -39,6 +39,8 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'home',
     'assuraimant',
+    'login',
+    'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -132,3 +134,6 @@ AUTH_USER_MODEL = 'assuraimant.User'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/login/'
