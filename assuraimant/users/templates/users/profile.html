@@ -5,12 +5,43 @@
 {% block content%}
 
     <h2>Your profile</h2>
-    
+
     <ul>
+
             <li>
-                <p><strong>name :</strong> {{ user.username }}</p>
- 
-                </li>
+                <p><strong>Profile information</strong></p>
+                <p><strong>Username : </strong> {{ user.username }}</p>
+                <p><strong>Last name : </strong> {{ user.last_name }}</p>
+                <p><strong>First name : </strong> {{ user.first_name }}</p>
+                <p><strong>Email : </strong> {{ user.last_name }}</p>
+                <p><strong>Insurance information </strong></p>
+                <p><strong>Date of birth : </strong> {{ user.date_of_birth}}</p>
+                <p><strong>Sex : </strong> {{ user.sex}}</p>
+                <p><strong>Smoker : </strong> {{ user.get_smoker_display }}</p>
+                <p><strong>Weight : </strong> {{ user.weight }}</p>
+                <p><strong>Number of children : </strong> {{ user.children}}</p>
+                <p><strong>Home region : </strong> {{ user.get_region_display }}</p>
+                <p><strong>Last charge prediction</strong></p>
+                <p><strong></strong> {{ user.last_charge_prediction }}</p>
+            </li>
+
             
     </ul>
 {%endblock%}
+
+
+{% if user.is_authenticated %}
+<li class="user-header">
+    <p class="inline">Bonjour <strong>{{ user.username }}</strong> !
+        <form method="post" class="inline" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    </p>
+</li>
+{% else %}
+<li class="user-header">
+<a href="/login/">Log in</a>
+<a href="/signup">Sign up</a>
+</li>
+{% endif %}
