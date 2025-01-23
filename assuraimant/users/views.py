@@ -8,7 +8,18 @@ from .forms import CustomCreationForm, UserChangeForm
 from .forms import CustomCreationForm
 import cloudpickle
 import pandas
+from datetime import date
 
+
+def calculate_age(date_of_birth):
+    today = date.today()
+    age = today.year - date_of_birth.year
+    
+    # Check to see if birthday is already passed
+    if (today.month, today.day) < (date_of_birth.month, date_of_birth.day):
+        age -= 1
+
+    return age
 
 class CreateUserViews(CreateView):
     model = User #spécifie le modèle
@@ -47,7 +58,9 @@ class PredictionView(TemplateView):
         user = self.request.user
         region = "southeast" if user.region == 1 else "southwest" if user.region == 2 else "northeast" if user.region == 3 else "northwest"
         bmi = user.weight / (user.height)**2
-        client=[[user.age,user.sex, user.children,user.smoker, region, bmi]]
+        
+        age = calculate_age(user.date_of_birth)
+        client=[[age,user.sex, user.children,user.smoker, region, bmi]]
         client_array= pandas.DataFrame(client, columns=["age","sex","children","smoker","region","bmi"])
         
         model = cloudpickle.load(open("users/best_model.pkl", 'rb'))
