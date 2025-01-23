@@ -10,7 +10,7 @@ urlpatterns = [
     path('signup/', CreateUserViews.as_view(), name='signup'),
     path('profile/', DisplayProfileView.as_view(), name='display_profile'),
     path ("logout/", LogoutView.as_view(), name="logout"),
-    path ("user/<int:pk>/update/", UserUpdateView.as_view(), name="user_update"),
+    path ("<int:pk>/update/", UserUpdateView.as_view(), name="user_update"),
     path ("prediction/", PredictionView.as_view(), name="prediction")
 ]
 
