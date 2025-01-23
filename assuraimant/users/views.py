@@ -5,6 +5,10 @@ from assuraimant.models import User
 from django.views.generic.edit import CreateView, UpdateView
 from django.urls import reverse_lazy
 from .forms import CustomCreationForm, UserChangeForm
+from .forms import CustomCreationForm
+import cloudpickle
+import pandas
+
 
 class CreateUserViews(CreateView):
     model = User #spécifie le modèle
@@ -32,3 +36,23 @@ class UserUpdateView(UpdateView):
     #     # return super().form_valid(form)
     #     print(form)
 
+# class LogInView(TemplateView):
+#     template_name = 'users/login.html' #spécifie le template
+
+class PredictionView(TemplateView):
+    template_name = "users/prediction.html"
+    
+    def get_context_data(self, **kwargs) -> dict[str, any]:
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        region = "southeast" if user.region == 1 else "southwest" if user.region == 2 else "northeast" if user.region == 3 else "northwest"
+        bmi = user.weight / (user.height)**2
+        client=[[user.age,user.sex, user.children,user.smoker, region, bmi]]
+        client_array= pandas.DataFrame(client, columns=["age","sex","children","smoker","region","bmi"])
+        
+        model = cloudpickle.load(open("users/best_model.pkl", 'rb'))
+        
+        context["test"] = f"Bonjour, {user.first_name}. Voici votre prédiction de prime d'assurance : " 
+        context["prediction"] = model.predict(client_array).round(2)
+        return context
+    
