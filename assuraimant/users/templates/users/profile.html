@@ -23,13 +23,20 @@
                 <p><strong>Last charge prediction</strong></p>
                 <p><strong></strong> {{ user.last_charge_prediction }}</p>
             </li>
-            <p>
-            <a href="{% url 'user_update' pk=user.pk%}" class="button2">Update your profile</a>
-            <a href="{% url 'password_change' %}" class="button2">Change password</a>
-            <a href="{% url 'prediction' %}" class="button2">Make a prediction</a>
-            </p>
-            
     </ul>
+    <p class='padding_top center'>
+        <a href="{% url 'user_update' pk=user.pk%}" class="button2">Update your insurance information</a>
+        <a href="{% url 'account_update' pk=user.pk%}" class="button2">Update your profile information</a>
+        <a href="{% url 'password_change' %}" class="button2">Change password</a>
+        {% if user.date_of_birth %}
+            <a href="{% url 'prediction' %}" class="button2">Make a prediction</a>
+        {%else%}
+            <a class='fake_button'>Make a prediction</a>
+        {% endif %}
+        {%if predictions%}
+            <a href="{% url 'history' %}" class="button2">Prediction history</a>
+        {% endif %}
+        </p>
 {%endblock%}
 
 
