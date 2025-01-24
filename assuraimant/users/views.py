@@ -1,15 +1,13 @@
-from django.views.generic import TemplateView, ListView, FormView
-from django.views.generic.edit import CreateView, FormView
+from django.views.generic import TemplateView
+from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from assuraimant.models import User
 from django.views.generic.edit import CreateView, UpdateView
 from django.urls import reverse_lazy
 from .forms import CustomCreationForm, UserChangeForm
-from .forms import CustomCreationForm
 import cloudpickle
 import pandas
 from datetime import date
-
 
 def calculate_age(date_of_birth):
     today = date.today()
@@ -35,21 +33,12 @@ class DisplayProfileView(LoginRequiredMixin, TemplateView):
     template_name='users/profile.html'
     login_url= "/login/"
 
-class UserUpdateView(UpdateView):
+class UserUpdateView(UpdateView, LoginRequiredMixin):
     model = User  # Le modèle que l'on souhaite mettre à jour
     form_class=UserChangeForm
-    # fields = ['date'of'birth''weight', 'height', 'region', 'smoker', 'sex', 'children']  # Les champs que l'on souhaite afficher dans le formulaire
     template_name = 'users/user_update.html'  # Le template à utiliser pour le formulaire
     success_url = reverse_lazy('display_profile')  # L'URL vers laquelle rediriger après la mise à jour réussie
 
-    # def form_valid(self, form):
-    #     """If the form is valid, save the associated model."""
-    #     self.object = form.save()
-    #     # return super().form_valid(form)
-    #     print(form)
-
-# class LogInView(TemplateView):
-#     template_name = 'users/login.html' #spécifie le template
 
 class PredictionView(LoginRequiredMixin, TemplateView):
     template_name = "users/prediction.html"

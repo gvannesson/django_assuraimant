@@ -15,3 +15,8 @@ class UserChangeForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['date_of_birth','weight', 'height', 'region', 'smoker', 'sex', 'children']
+
+class AccountChangeForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username','email', 'password']

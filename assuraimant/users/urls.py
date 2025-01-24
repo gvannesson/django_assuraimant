@@ -1,8 +1,7 @@
-from django.contrib.auth.views import LoginView, LogoutView
-from django.urls import path, include
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
+from django.urls import path, reverse_lazy
 from .views import HomeView, CreateUserViews, DisplayProfileView, UserUpdateView
 from .views import HomeView, CreateUserViews, PredictionView
-from . import views
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home_view'),
@@ -11,6 +10,7 @@ urlpatterns = [
     path('profile/', DisplayProfileView.as_view(), name='display_profile'),
     path ("logout/", LogoutView.as_view(), name="logout"),
     path ("<int:pk>/update/", UserUpdateView.as_view(), name="user_update"),
+    path('password_change/', PasswordChangeView.as_view(success_url=reverse_lazy('login')), name='password_change'),
     path ("prediction/", PredictionView.as_view(), name="prediction")
 ]
 
