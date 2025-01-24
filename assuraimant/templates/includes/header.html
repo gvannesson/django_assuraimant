@@ -7,18 +7,18 @@
                 <p class="inline">Hello <strong>{{ user.username }}</strong>!
                     <form method="post" class="inline" action="{% url 'logout' %}">
                         {% csrf_token %}
-                        <button type="submit">Logout</button>
+                        <button class='button2' type="submit">Logout</button>
                     </form>
                     <form method="get" class="inline" action="{% url 'display_profile' %}">
                         {% csrf_token %}
-                        <button type="submit">Account</button>
+                        <button class='button2' type="submit">Account</button>
                     </form>
                 </p>
             </li>
             {% else %}
             <li class="user-header">
-            <a href="/login/">Log in</a>
-            <a href="/signup">Sign up</a>
+            <a class='button2' href="/login/">Log in</a>
+            <a class='button2' href="/signup">Sign up</a>
             </li>
             {% endif %}
 
