@@ -12,6 +12,13 @@
         padding: 20px;
     }
     
+    footer {
+        background-color: #333;
+        text-align: center;
+        padding: 10px 0;
+        padding-top : 10%;
+      }
+
     h1,h2 {
         color: #444;
         margin-bottom: 20px;
@@ -69,15 +76,6 @@
         left: 50%;        
     }
 
-    a.button {
-        padding: 1px 6px;
-        border: 1px outset buttonborder;
-        border-radius: 3px;
-        color: #007BFF;
-        background-color: #000;
-        text-decoration: none;
-    }
-
     strong.green {
         color: darkgreen;
     }
@@ -117,4 +115,8 @@
 
     div.header {
         padding-bottom: 10%;
+    }
+
+    div.footer {
+        padding-top: 5%;
     }
