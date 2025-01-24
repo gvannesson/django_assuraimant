@@ -1,13 +1,14 @@
-from django.views.generic import TemplateView
-from django.views.generic.edit import CreateView
+from django.views.generic import TemplateView, ListView
+from django.views.generic.edit import CreateView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from assuraimant.models import User
+from assuraimant.models import User, Prediction
 from django.views.generic.edit import CreateView, UpdateView
 from django.urls import reverse_lazy
-from .forms import CustomCreationForm, UserChangeForm
+from .forms import CustomCreationForm, UserChangeForm, AccountChangeForm
 import cloudpickle
 import pandas
 from datetime import date
+
 
 def calculate_age(date_of_birth):
     today = date.today()
@@ -33,10 +34,21 @@ class DisplayProfileView(LoginRequiredMixin, TemplateView):
     template_name='users/profile.html'
     login_url= "/login/"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['predictions'] = self.request.user.prediction_set.all().filter(user_id=self.request.user.id)
+        return context
+
 class UserUpdateView(UpdateView, LoginRequiredMixin):
     model = User  # Le modèle que l'on souhaite mettre à jour
     form_class=UserChangeForm
     template_name = 'users/user_update.html'  # Le template à utiliser pour le formulaire
+    success_url = reverse_lazy('display_profile')  # L'URL vers laquelle rediriger après la mise à jour réussie
+
+class AccountUpdateView(UpdateView, LoginRequiredMixin):
+    model = User  # Le modèle que l'on souhaite mettre à jour
+    form_class=AccountChangeForm
+    template_name = 'users/account_update.html'  # Le template à utiliser pour le formulaire
     success_url = reverse_lazy('display_profile')  # L'URL vers laquelle rediriger après la mise à jour réussie
 
 
@@ -58,5 +70,25 @@ class PredictionView(LoginRequiredMixin, TemplateView):
         
         context["test"] = f"Bonjour, {user.first_name}. Voici votre prédiction de prime d'assurance : " 
         context["prediction"] = model.predict(client_array).round(2)
+
+        pred= Prediction()
+        pred.height = user.height
+        pred.weight = user.weight
+        pred.region = user.get_region_display()
+        pred.smoker = user.get_smoker_display()
+        pred.sex = user.get_sex_display()
+        pred.age = age
+        pred.prediction = context['prediction']
+        pred.user_id = user
+        pred.save()
+
         return context
+
+
+class HistoryView(ListView):
+    model=Prediction
+    template_name = 'users/history.html'
+    context_object_name = 'predictions'
+    def get_queryset(self):
+        return self.request.user.prediction_set.all().filter(user_id=self.request.user.id)
     

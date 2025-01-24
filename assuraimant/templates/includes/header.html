@@ -1,8 +1,8 @@
 <header>
     <nav>
         <ul>
+            <p><a href="{% url "home_view" %}">Home</a></p>
             {% if user.is_authenticated %}
-            <p><a href="{% url "home_view" %}">Home</a>
             <li class="user-header">
                 <p class="inline">Hello <strong>{{ user.username }}</strong>!
                     <form method="post" class="inline" action="{% url 'logout' %}">
@@ -10,7 +10,6 @@
                         <button class='button2' type="submit">Logout</button>
                     </form>
                     <form method="get" class="inline" action="{% url 'display_profile' %}">
-                        {% csrf_token %}
                         <button class='button2' type="submit">Account</button>
                     </form>
                 </p>
