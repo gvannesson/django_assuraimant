@@ -9,11 +9,14 @@
     <title>{% block title%}Assuraimant{%endblock%}</title>
 </head>
 <body>
+    <div class="header">
     {%include 'includes/header.html'%}
-    <main>
-        {%block content%}{% endblock%}
-    </main>
+    </div>
+    <div>
+        <main>
+            {%block content%}{% endblock%}
+        </main>            
+    </div>
     {%include 'includes/footer.html'%}
-    
 </body>
 </html>

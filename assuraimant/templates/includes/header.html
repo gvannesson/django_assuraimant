@@ -2,11 +2,16 @@
     <nav>
         <ul>
             {% if user.is_authenticated %}
+            <p><a href="{% url "home_view" %}">Home</a>
             <li class="user-header">
-                <p class="inline">Bonjour <strong>{{ user.username }}</strong> !
+                <p class="inline">Hello <strong>{{ user.username }}</strong>!
                     <form method="post" class="inline" action="{% url 'logout' %}">
                         {% csrf_token %}
                         <button type="submit">Logout</button>
+                    </form>
+                    <form method="get" class="inline" action="{% url 'display_profile' %}">
+                        {% csrf_token %}
+                        <button type="submit">Account</button>
                     </form>
                 </p>
             </li>

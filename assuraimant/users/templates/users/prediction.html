@@ -3,7 +3,8 @@
 {% block title%}Prédiction{%endblock%}
 
 {% block content%}
-    <h2>Réaliser une prédiction</h2>
+    <h2>Make a prediction</h2>
         <p><strong>{{ test }}</strong></p>
-        <p>La charge prédite est de ${{ prediction }}.
+        <p>Your predicted charges are <strong class="green">${{ prediction }}</strong>.</p>     
+        <p><a class="button2" href="/profile/">Back</a></p>
 {%endblock%}
