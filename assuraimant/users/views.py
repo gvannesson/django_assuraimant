@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView, ListView, FormView
 from django.views.generic.edit import CreateView, FormView
-from django.contrib.auth.views import LogoutView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from assuraimant.models import User
 from django.views.generic.edit import CreateView, UpdateView
 from django.urls import reverse_lazy
@@ -31,8 +31,9 @@ class CreateUserViews(CreateView):
 class HomeView(TemplateView):
     template_name = 'users/home.html' #spécifie le template
 
-class DisplayProfileView(TemplateView):
+class DisplayProfileView(LoginRequiredMixin, TemplateView):
     template_name='users/profile.html'
+    login_url= "/login/"
 
 class UserUpdateView(UpdateView):
     model = User  # Le modèle que l'on souhaite mettre à jour
@@ -50,8 +51,9 @@ class UserUpdateView(UpdateView):
 # class LogInView(TemplateView):
 #     template_name = 'users/login.html' #spécifie le template
 
-class PredictionView(TemplateView):
+class PredictionView(LoginRequiredMixin, TemplateView):
     template_name = "users/prediction.html"
+    login_url= "/login/"
     
     def get_context_data(self, **kwargs) -> dict[str, any]:
         context = super().get_context_data(**kwargs)
