@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% load static%}
+{% block content %}
+    <script src='{%static "test.js" %}'></script>
+    {{user.username|json_script:'json_username'}}
+    {{user.date_of_birth|json_script:'json_date_of_birth'}}
+    {{user.weight|json_script:'json_weight'}}
+    {{user.height|json_script:'json_height'}}
+    {{user.sex|json_script:'json_sex'}}
+    {{user.smoker|json_script:'json_smoker'}}
+    {{user.region|json_script:'json_region'}}
+    {{user.children|json_script:'json_children'}}
+
+    <p><strong>Profile information</strong></p>
+
+        <p><strong>Username : </strong> {{ user.username }}</p>
+        <label for="date_birth">Date of birth: </label>
+        <input id='date_birth' name='date_birth' type="date"><br><br>
+
+        <label for="weight">Weight: </label>
+        <input id='weight' name='weight' type="Number" min=0 max=800><br><br>
+        <label for="height">Height: </label>
+        <input id='height' name='height' type="Number" min=0 max=250><br><br>
+        <label for="sex">Specify your gender: </label>
+  
+        <select id="sex" name="choices">
+            <option value="option1" id="sex_option_1">Male</option>
+            <option value="option2" id="sex_option_2">Female</option>
+        </select>
+        <br><br>
+
+        <label for="smoker">Do you smoke? </label>
+        <select id="smoker" name="choices">
+            <option value="option1" id="smoker_option_1">Yes</option>
+            <option value="option2" id="smoker_option_2">No</option>
+        </select>
+        <br><br>
+        <label for="region">Specify your area of origin: </label>
+        <select id="region" name="choices">
+            <option value="option1" id="region_option_1">Northeast</option>
+            <option value="option2" id="region_option_2">Northwest</option>
+            <option value="option3" id="region_option_3">Southeast</option>
+            <option value="option4" id="region_option_4">Southwest</option>
+        </select>
+        <br><br>
+
+        <label for="children">Children: </label>
+        <input id='children' name='children' type="Number" min=0 max=30><br><br>
+
+        <br><br>
+        <input type="text" id='test'>
+        <button class=button2 onclick='print_user()'>print le username</button>
+    {% endblock %}
+

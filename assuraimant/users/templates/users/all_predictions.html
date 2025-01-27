@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Your history{% endblock %}
+
+{% block content %}
+
+    <ul>
+        Hello {{user.first_name}}, here are all the predictions :
+        <table>
+            <tr>
+              <th>Weight</th>
+              <th>Height</th>
+              <th>Smoker</th>
+              <th>Number of children</th>
+              <th>Age</th>
+              <th>Charge</th>
+              <th>Date</th>
+              <th>User</th>
+            </tr>
+            
+                {% for prediction in predictions %}
+                <tr>
+                <td>{{ prediction.weight }}</td>
+                <td>{{ prediction.height }}</td>
+                <td>{{ prediction.smoker }}</td>
+                <td>{{ prediction.number_of_children }}</td>
+                <td>{{ prediction.age }}</td>
+                <td class='bold'>${{ prediction.prediction }}</td>
+                <td>{{ prediction.prediction_date }}</td>
+                <td>{{ prediction.user_id.username }}</td>
+            </tr>
+            {% endfor %}
+          </table>
+
+        <p class='padding_top'><a class="button2" href="/profile/">Back</a></p>
+    </ul>
+{% endblock %}

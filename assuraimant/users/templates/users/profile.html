@@ -36,6 +36,16 @@
         {%if predictions%}
             <a href="{% url 'history' %}" class="button2">Prediction history</a>
         {% endif %}
+        {% if user.is_staff %}
+        <a href="{% url 'all_predictions' %}" class="button2">Check all predictions</a>
+        {%else%}
+        <a class='fake_button'>Staff only</a>
+        {% endif %}
+        {% if user.is_broker %}
+        <a href="{% url 'simulate_pred' pk=user.pk%}" class="button2">simulate predictions</a>
+        {%else%}
+        <a class='fake_button'>broker only</a>
+        {% endif %}
         </p>
 {%endblock%}
 

@@ -167,3 +167,21 @@
         gap: 15px; /* Espace entre chaque bouton */
         text-align: center; /* Aligner le texte dans les boutons */
     }
+
+    .row-heading
+    {
+    font-size:1.3rem;
+    font-weight:bold;
+    }
+
+    .total
+    {
+    font-size:2rem;
+    font-weight:bold;
+    }
+    
+    .total-val
+    {
+    font-size:2rem;
+    border: 1px;
+    }
