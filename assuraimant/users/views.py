@@ -9,11 +9,16 @@ import cloudpickle
 import pandas
 from datetime import date
 from django.shortcuts import redirect
+from django.http import JsonResponse
+import json
 
 
 
 def calculate_age(date_of_birth):
     today = date.today()
+    #If date is received as string, transform it to Date
+    if (type(date_of_birth) == str):
+        date_of_birth = date(year=int(date_of_birth[0:4]), month=int(date_of_birth[5:7]), day=int(date_of_birth[8:10]))
     age = today.year - date_of_birth.year
     
     # Check to see if birthday is already passed
@@ -110,22 +115,47 @@ class AllPredictionsView(ListView):
         return Prediction.objects.all()
 
 
-class SimulatePredictionView(UpdateView):
-    model = User  # Le modèle que l'on souhaite mettre à jour
-    form_class=SimulatePredForm
+class SimulatePredictionView(TemplateView):
     template_name = 'users/simulate_pred.html'  # Le template à utiliser pour le formulaire
+    
+    
+    def post(self, request, *args, **kwargs):
+        try:
+            # Récupérer les données JSON envoyées via fetch
+            data = json.loads(request.body)  # Parse le corps de la requête en JSON
+            # print("DATA : ", data)
 
-    # def get(self, request):
-    #     context = super().get_context_data(**kwargs)
-    #     user = self.request.user
-    #     region = "southeast" if user.region == 1 else "southwest" if user.region == 2 else "northeast" if user.region == 3 else "northwest"
-    #     bmi = user.weight / (user.height)**2
-        
-    #     age = calculate_age(user.date_of_birth)
-    #     client=[[age,user.sex, user.children,user.smoker, region, bmi]]
-    #     client_array= pandas.DataFrame(client, columns=["age","sex","children","smoker","region","bmi"])
-        
-    #     model = cloudpickle.load(open("users/best_model.pkl", 'rb'))
-        
-    #     context["test"] = f"Bonjour, {user.first_name}. Voici votre prédiction de prime d'assurance : " 
-    #     context["prediction"] = model.predict(client_array).round(2)
+            # Traiter les données
+            if data:
+                region = data["region"]
+                bmi = float(data["weight"]) / ((float(data["height"])/100)**2)
+                age = calculate_age(data["date_of_birth"])
+
+                client = [[age, data["sex"], data["children"], data["smoker"], region, bmi]]
+                client_array = pandas.DataFrame(client, columns=["age", "sex", "children", "smoker", "region", "bmi"])
+                model = cloudpickle.load(open("users/best_model.pkl", 'rb'))
+                prediction_ = model.predict(client_array).round(2)
+
+                return JsonResponse({"prediction": prediction_[0]}, status=200)
+            else:
+                response_data = {
+                    'message': "Aucune donnée reçue",
+                    'status': 'error'
+                }
+                return JsonResponse(response_data, status=400)
+
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Invalid JSON data"}, status=400)
+    
+    
+    # def get(self, request, *args, **kwargs):
+    #     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            
+    #         data = {"prediction": self.prediction}
+    #         return JsonResponse(data)  # Retourne une réponse JSON
+    #     return super().get(request, *args, **kwargs)  # Charge le template HTML
+    
+
+
+
+    
