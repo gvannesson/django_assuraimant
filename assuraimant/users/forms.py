@@ -23,8 +23,7 @@ class AccountChangeForm(forms.ModelForm):
         fields = ['username','email','first_name', 'last_name']
 
 
-class SimulatePredForm(forms.ModelForm):
-    date_of_birth = forms.DateField(widget=forms.SelectDateWidget(empty_label=("Year", "Month", "Day"), years=[x for x in range(date.today().year-17, 1900, -1)]))
-    class Meta:
-        model = User
-        fields = ['date_of_birth','weight', 'height', 'region', 'smoker', 'sex', 'children']
+
+class Recherche(forms.Form):
+    search_by_user = forms.ModelChoiceField(label="Username", queryset=User.objects.all(), required=False)
+    search_by_date = forms.DateTimeField(widget=forms.SelectDateWidget(empty_label=("Year", "Month", "Day")),label="Search date", required=False)
