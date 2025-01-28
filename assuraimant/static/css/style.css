@@ -48,11 +48,10 @@ header {
     color: white;
 }
 
-footer {
-    background-color: var(--primary-color); /* Couleur de fond via une variable */
-    color: white; /* Texte blanc pour le contraste */
-    text-align: center; /* Centre le texte horizontalement */
-    padding: 20px 0; /* Espacement vertical dans le footer */
+footer {/* Couleur de fond via une variable */
+    color: black; /* Texte blanc pour le contraste */
+     /* Centre le texte horizontalement */
+     /* Espacement vertical dans le footer */
     font-size: 16px; /* Taille du texte */
     flex-shrink: 0; /* Empêche le footer de se réduire si l'espace est limité */
 }

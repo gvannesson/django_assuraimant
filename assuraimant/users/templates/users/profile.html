@@ -48,20 +48,3 @@
         {% endif %}
         </p>
 {%endblock%}
-
-
-{% if user.is_authenticated %}
-<li class="user-header">
-    <p class="inline">Bonjour <strong>{{ user.username }}</strong> !
-        <form method="post" class="inline" action="{% url 'logout' %}">
-            {% csrf_token %}
-            <button type="submit">Logout</button>
-        </form>
-    </p>
-</li>
-{% else %}
-<li class="user-header">
-<a href="/login/">Log in</a>
-<a href="/signup">Sign up</a>
-</li>
-{% endif %}
