@@ -1,187 +1,113 @@
-*{
-    margin : 0;
-    padding:  0;
+:root {
+    --primary-color: #007bff;
+}
+
+/* Réinitialisation de la marge et du padding */
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    }
-    
-    body {
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-        background-color: #ffffff;
-        color: #333;
-        padding: 20px;
-    }
-    
-    footer {
-        display: flex;
-        text-align: center;
-        padding: 10px 0;
-        padding-top : 10%;
-      }
+}
 
-    h1,h2 {
-        color: #444;
-        margin-bottom: 20px;
-        text-align: center;
-    }
-    
-    ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0 auto;
-        max-width: 800px;
-    }
-    
-    li {
-        background-color: #ffffff;
-        padding: 5px;
-        margin-bottom: 2px;
-        border: 1px solid #ddd;
-        border-radius: 3px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 1);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-        
-    }
-    
-    li:hover {
-        transform: translate((-5px));
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-    
-    li p strong {
-        font-size: 1.2em;
-        color: #007BFF;
-    }
-    
-    li p {
-        margin-top: 10px;
-        color: #555
-    }
+html, body {
+    height: 100%; /* La page occupe toujours 100% de la hauteur */
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Disposition verticale : contenu + footer */
+}
 
-    .user-header{
-        position: fixed;
-        right: 1%;
-        top: 1%;
-        padding: 10px;
-        border: 1px solid #000;
-    }
+/* Contenu principal */
+.content {
+    flex: 1; /* Prend tout l'espace disponible pour pousser le footer en bas */
+    padding: 20px;
+    text-align: center; /* Centrer le texte dans le contenu */
+}
 
-    .inline {
-        display: inline;
-    }
+/* Header avec alignement */
+header {
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center; /* Aligne tout verticalement au centre */
+    justify-content: space-between; /* Espacement entre le titre, les liens, et la navigation */
+    padding: 0 20px; /* Espacement interne gauche-droite */
+    height: 80px; /* Hauteur du header */
+    color: white;
+}
 
-    .footer{
-        position: fixed;
-        bottom: 1%;
-        left: 50%;        
-    }
+footer {
+    background-color: var(--primary-color); /* Couleur de fond via une variable */
+    color: white; /* Texte blanc pour le contraste */
+    text-align: center; /* Centre le texte horizontalement */
+    padding: 20px 0; /* Espacement vertical dans le footer */
+    font-size: 16px; /* Taille du texte */
+    flex-shrink: 0; /* Empêche le footer de se réduire si l'espace est limité */
+}
 
-    strong.green {
-        color: darkgreen;
-    }
+/* Titre ancré à gauche */
+header h1 {
+    font-size: 36px;
+    margin: 0;
+    flex: 1; /* Occupe l'espace restant à gauche */
+}
 
-    a.button2 {
-        display: inline-block;
-        padding: 10px 20px;
-        font-size: 16px;
-        color: white;
-        background-color: grey;
-        text-decoration: none;
-        border-radius: 5px;
-        border: none;
-        cursor: pointer;
-    }
+/* Conteneur des liens */
+.links-container {
+    display: flex;
+    gap: 20px; /* Espacement entre les liens */
+    flex: 1; /* Occupe l'espace central */
+    justify-content: center; /* Centre les liens horizontalement */
+}
 
-    a.button2:hover {
-        background-color: lightgray;
-    }
+/* Style des liens */
+.link {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+}
 
-    button.button2 {
-        display: inline-block;
-        padding: 10px 20px;
-        font-size: 16px;
-        color: white;
-        background-color: grey;
-        text-decoration: none;
-        border-radius: 5px;
-        border: none;
-        cursor: pointer;
-        margin-bottom: 10px;
-    }
+.link:hover {
+    text-decoration: underline;
+}
 
-    button.button2:hover {
-        background-color: lightgray;
-    }
+/* Navigation à droite */
+nav {
+    display: flex;
+    align-items: center; /* Aligne verticalement tous les éléments */
+    gap: 10px; /* Espacement entre le texte et les boutons */
+    flex: 1; /* Occupe l'espace à droite */
+    justify-content: flex-end; /* Aligne le contenu à droite */
+}
 
-    div.header {
-        padding-bottom: 10%;
-    }
+/* Style du texte (Hello user) */
+nav p {
+    margin: 0; /* Supprime les marges par défaut */
+    font-size: 16px;
+    color: white;
+}
 
-    .fake_button {
-        display: inline-block;
-        padding: 10px 20px;
-        font-size: 16px;
-        color: white;
-        background-color: rgb(48, 41, 41);
-        text-decoration: none;
-        border-radius: 5px;
-        border: none;
-        cursor: pointer;
-    }
+nav p strong{
+    color: rgb(69, 206, 15);
+    font-weight: bold;
+}
 
-    .fake_button:hover {
-        background-color: rgb(194, 5, 5);
-    }
+/* Formulaires de navigation en ligne */
+nav .inline {
+    display: inline-block; /* Assure un alignement horizontal propre */
+}
 
-    td{
-        border-color: #000;
-        border-width: 2px;
-        border-radius: 1px;
-        text-align: center;
-        padding-left: 5px;
-        padding-right: 5px;
-    }
 
-    th{
-        border-color: #000;
-        border-width: 2px;
-        border-radius: 1px;
-        text-align: center;
-        padding-left: 5px;
-        padding-right: 5px;
-    }
+/* Style des boutons */
+.btn {
+    background-color: #ffffff;
+    color: #007bff;
+    border: 1px solid #007bff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-    td.bold{
-        font-weight: bold;
-    }
-
-    .padding_top{
-        padding-top: 20px;
-    }
-
-    .center {
-        display: flex;
-        flex-direction: row; /* Les boutons seront alignés verticalement */
-        align-items: center; /* Centrer horizontalement */
-        justify-content: center; /* Centrer verticalement si nécessaire */
-        gap: 15px; /* Espace entre chaque bouton */
-        text-align: center; /* Aligner le texte dans les boutons */
-    }
-
-    .row-heading
-    {
-    font-size:1.3rem;
-    font-weight:bold;
-    }
-
-    .total
-    {
-    font-size:2rem;
-    font-weight:bold;
-    }
-    
-    .total-val
-    {
-    font-size:2rem;
-    border: 1px;
-    }
+.btn:hover {
+    background-color: #02458d;
+    color: #ffffff;
+}
