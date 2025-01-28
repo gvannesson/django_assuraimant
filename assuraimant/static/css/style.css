@@ -3,6 +3,10 @@
     --secondary-color:rgb(69, 206, 15);
 }
 
+.primary-color{
+    color:var(--primary-color);
+}
+
 /* Réinitialisation de la marge et du padding */
 * {
     margin: 0;
