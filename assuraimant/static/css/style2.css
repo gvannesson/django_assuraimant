@@ -1,19 +1,10 @@
 :root {
     --primary-color: #007bff;
-    --secondary-color: white;
-    --name-color: rgb(255, 81, 0);
+    --secondary-color:rgb(69, 206, 15);
 }
 
 .primary-color{
     color: var(--primary-color);
-}
-
-.secondary-color{
-    color: var(--secondary-color)
-}
-
-.bg-primary{
-    background-color: var(--primary-color);
 }
 
 /* Réinitialisation de la marge et du padding */
@@ -100,7 +91,7 @@ nav p {
 }
 
 strong.name{
-    color: var(--name-color);
+    color: var(--secondary-color);
     font-weight: bold;
 }
 
