@@ -1,5 +1,5 @@
 <header>
-    <h1>Assuraimant</h1>
+    <h1>Assur'Aimant</h1>
     <div class="links-container">
         <a class="link" href="{% url "home_view" %}">Home</a>
         <a class="link" href="/about">About Us</a>
@@ -7,7 +7,7 @@
     </div>
     <nav>
         {% if user.is_authenticated %}
-        <p class="">Hello <strong>{{ user.username }}</strong>!</p>
+        <p class="">Hello <strong class="name">{{ user.username }}</strong>!</p>
             <form method="post" class="inline" action="{% url 'logout' %}">
                 {% csrf_token %}
                 <button class='btn' type="submit">Logout</button>

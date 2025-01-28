@@ -1,5 +1,6 @@
 :root {
     --primary-color: #007bff;
+    --secondary-color:rgb(69, 206, 15);
 }
 
 /* Réinitialisation de la marge et du padding */
@@ -85,13 +86,13 @@ nav p {
     color: white;
 }
 
-nav p strong{
-    color: rgb(69, 206, 15);
+strong.name{
+    color: var(--secondary-color);
     font-weight: bold;
 }
 
 /* Formulaires de navigation en ligne */
-nav .inline {
+nav.inline {
     display: inline-block; /* Assure un alignement horizontal propre */
 }
 
@@ -110,4 +111,26 @@ nav .inline {
 .btn:hover {
     background-color: #02458d;
     color: #ffffff;
+}
+
+td{
+    border-color: #000;
+    border-width: 2px;
+    border-radius: 1px;
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+th{
+    border-color: #000;
+    border-width: 2px;
+    border-radius: 1px;
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+td.bold{
+    font-weight: bold;
 }
