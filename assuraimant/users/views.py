@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from assuraimant.models import User, Prediction
 from django.views.generic.edit import CreateView, UpdateView
 from django.urls import reverse_lazy
-from .forms import CustomCreationForm, UserChangeForm, AccountChangeForm, SimulatePredForm
+from .forms import CustomCreationForm, UserChangeForm, AccountChangeForm, Recherche
 import cloudpickle
 import pandas
 from datetime import date
@@ -99,8 +99,9 @@ class HistoryView(ListView):
     def get_queryset(self):
         return self.request.user.prediction_set.all()
     
-class AllPredictionsView(ListView):
+class AllPredictionsView(ListView, FormView):
     model = Prediction
+    form_class = Recherche
     template_name = 'users/all_predictions.html'
     context_object_name = 'predictions'
 
@@ -112,7 +113,24 @@ class AllPredictionsView(ListView):
 
 
     def get_queryset(self):
-        return Prediction.objects.all()
+        query_name = self.request.GET.get('search_by_user')
+        query_date_year = self.request.GET.get('search_by_date_year')
+        query_date_month = self.request.GET.get('search_by_date_month')
+        query_date_day = self.request.GET.get('search_by_date_day')
+        result = Prediction.objects.all()
+        print("---------------------------------")
+        print(query_name)
+        print("---------------------------------")
+        if query_name:
+            result =  result.filter(user_id=query_name)
+        if query_date_year:
+            result = result.filter(prediction_date__year=int(query_date_year))
+        if query_date_month:
+            result = result.filter(prediction_date__month=int(query_date_month))
+        if query_date_day:
+            result = result.filter(prediction_date__day=int(query_date_day))
+        return result
+
 
 
 class SimulatePredictionView(TemplateView):

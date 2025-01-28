@@ -4,34 +4,56 @@
 
 {% block content %}
 
-    <ul>
-        Hello {{user.first_name}}, here are all the predictions :
-        <table>
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <h2 class="text-2xl font-bold mb-4">Hello {{user.first_name}}, here are all the predictions : </h2>
+    <table id="example" class="table-auto w-full">
+        <thead>
             <tr>
-              <th>Weight</th>
-              <th>Height</th>
-              <th>Smoker</th>
-              <th>Number of children</th>
-              <th>Age</th>
-              <th>Charge</th>
-              <th>Date</th>
-              <th>User</th>
+                <th class="px-4 py-2">Weight</th>
+                <th class="px-4 py-2">Height</th>
+                <th class="px-4 py-2">Smoker</th>
+                <th class="px-4 py-2">Number of children</th>
+                <th class="px-4 py-2">Age</th>
+                <th class="px-4 py-2">Charge</th>
+                <th class="px-4 py-2">Date</th>
+                <th class="px-4 py-2">User</th>
             </tr>
+        </thead>
+        <tbody>
+        </tr>
             
-                {% for prediction in predictions %}
-                <tr>
-                <td>{{ prediction.weight }}</td>
-                <td>{{ prediction.height }}</td>
-                <td>{{ prediction.smoker }}</td>
-                <td>{{ prediction.number_of_children }}</td>
-                <td>{{ prediction.age }}</td>
-                <td class='bold'>${{ prediction.prediction }}</td>
-                <td>{{ prediction.prediction_date }}</td>
-                <td>{{ prediction.user_id.username }}</td>
-            </tr>
-            {% endfor %}
-          </table>
+        {% for prediction in predictions %}
+        <tr>
+        <td>{{ prediction.weight }}</td>
+        <td>{{ prediction.height }}</td>
+        <td>{{ prediction.smoker }}</td>
+        <td>{{ prediction.children }}</td>
+        <td>{{ prediction.age }}</td>
+        <td class='bold'>${{ prediction.prediction }}</td>
+        <td>{{ prediction.prediction_date }}</td>
+        <td>{{ prediction.user_id.username }}</td>
+        </tr>
+        {% endfor %}
+           
+        </tbody>
+    </table>
+</div>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 
-        <p class='padding_top'><a class="button2" href="/profile/">Back</a></p>
-    </ul>
-{% endblock %}
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable({
+            // Add any customization options here
+        });
+    });
+</script>
+
+<p class='padding_top'><a class="button2" href="/profile/">Back</a></p>
+
+{% endblock  %}
+
+
+
+
