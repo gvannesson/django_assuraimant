@@ -136,7 +136,7 @@ class SimulatePredictionView(TemplateView):
                 model = cloudpickle.load(open("users/best_model.pkl", 'rb'))
                 prediction_ = model.predict(client_array).round(2)
 
-                return JsonResponse({"prediction": prediction_[0]}, status=200)
+                return JsonResponse({"prediction": prediction_[0], 'bmi':round(bmi,2)}, status=200)
             else:
                 response_data = {
                     'message': "Aucune donnée reçue",

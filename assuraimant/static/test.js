@@ -1,8 +1,8 @@
 
 document.addEventListener("DOMContentLoaded", function() {
-    const qtyElements = document.querySelectorAll(".pred"); // Sélectionne tous les éléments avec la classe "pred"
+    const inputs = document.querySelectorAll(".pred"); // Sélectionne tous les éléments avec la classe "pred"
 
-    qtyElements.forEach(function(element) {
+    inputs.forEach(function(element) {
         element.addEventListener("change", Predict); // Ajoute l'événement "change"
         element.addEventListener("keyup", Predict);
         
@@ -38,6 +38,7 @@ function Predict()
         "children" : document.getElementById("children").value,
         "region" : document.getElementById("region").value,
         "smoker" : document.getElementById("smoker").value,
+
     }
 
     fetch(url, {
@@ -50,13 +51,20 @@ function Predict()
     })
     .then(response => response.json())  // Convertir la réponse en JSON
     .then(data => {
-        document.getElementById('prediction').innerText = "Your estimated insurance charges are $"+ data.prediction.toString()+ ".";  // Affiche le message dans la page
+        document.getElementById('bmi_html').innerText = "Your bmi is "+ data.bmi.toString()+ ".";
+        discount = document.getElementById('discount_html').value;
+        if (discount>0){
+            document.getElementById('prediction').innerText = "Your estimated insurance charges with " + discount + "% discount are $"+ (((data.prediction)*(1-discount/100)).toFixed(2))+ 
+            " and without discount $" + data.prediction.toString()+".";
+        }
+        else document.getElementById('prediction').innerText = "Your estimated insurance charges are $"+ data.prediction.toString()+ ".";
+         // Affiche le message dans la page
     })
     .catch(error => console.error('Erreur :', error));
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    const json_date_of_birth = JSON.parse(document.getElementById('json_date_of_birth').textContent); //va chercher dans le html la variable nommée json_date_of_birth
+    const json_date_of_birth = JSON.parse(document.getElementById('json_date_of_birth').textContent); //va chercher dans le html la variable nommée json_date_of_birth pour afficher les valeurs quand on charge la page
     document.getElementById('date_birth').value=json_date_of_birth;
 
     const json_weight2 = JSON.parse(document.getElementById('json_weight').textContent);

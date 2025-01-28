@@ -5,7 +5,7 @@
     <meta name="csrf-token" content="{{ csrf_token }}">
     <script src='{%static "test.js" %}'></script>
     {{user.username|json_script:'json_username'}}
-    {{user.date_of_birth|json_script:'json_date_of_birth'}}
+    {{user.date_of_birth|json_script:'json_date_of_birth'}} {% comment %} récupère le user.date_of_birth avec l'id json_date_of_birth {% endcomment %}
     {{user.weight|json_script:'json_weight'}}
     {{user.height|json_script:'json_height'}}
     {{user.sex|json_script:'json_sex'}}
@@ -24,6 +24,10 @@
         <input class="pred" id='weight' name='weight' type="Number" min=0 max=800><br><br>
         <label for="height">Height: </label>
         <input class="pred" id='height' name='height' type="Number" min=0 max=250><br><br>
+
+        <div id="bmi_html"></div>
+        <br>
+
         <label for="sex">Specify your gender: </label>
   
         <select class="pred" id="sex" name="choices">
@@ -50,9 +54,11 @@
         <label for="children">Children: </label>
         <input class="pred" id='children' name='children' type="Number" min=0 max=30><br><br>
 
+        <label for="discount_html">Discount : </label>
+        <input class="pred" id='discount_html' name='discount_html' type="Number" value=0 min=0 max=99><br><br>
+
         <br><br>
-        {% comment %} <input type="text" id='test'>
-        <button class=button2 onclick='print_user()'>print le username</button> {% endcomment %}
+
 
         <div id="prediction"></div><br><br>
         <p><a class="button2" href="/profile/">Back</a></p>
