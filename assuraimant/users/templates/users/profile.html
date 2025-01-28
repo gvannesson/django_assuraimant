@@ -25,26 +25,26 @@
             </li>
     </ul>
     <p class='padding_top center'>
-        <a href="{% url 'user_update' pk=user.pk%}" class="button2">Update your insurance information</a>
-        <a href="{% url 'account_update' pk=user.pk%}" class="button2">Update your profile information</a>
-        <a href="{% url 'password_change' %}" class="button2">Change password</a>
+        <a href="{% url 'user_update' pk=user.pk%}" class="btn">Update your insurance information</a>
+        <a href="{% url 'account_update' pk=user.pk%}" class="btn">Update your profile information</a>
+        <a href="{% url 'password_change' %}" class="btn">Change password</a>
         {% if user.date_of_birth %}
-            <a href="{% url 'prediction' %}" class="button2">Make a prediction</a>
+            <a href="{% url 'prediction' %}" class="btn">Make a prediction</a>
         {%else%}
             <a class='fake_button'>Make a prediction</a>
         {% endif %}
         {%if predictions%}
-            <a href="{% url 'history' %}" class="button2">Prediction history</a>
+            <a href="{% url 'history' %}" class="btn">Prediction history</a>
         {% endif %}
         {% if user.is_staff %}
-        <a href="{% url 'all_predictions' %}" class="button2">Check all predictions</a>
+        <a href="{% url 'all_predictions' %}" class="btn">Check all predictions</a>
         {%else%}
-        <a class='fake_button'>Staff only</a>
+        {% comment %} <a class='fake_button'>Staff only</a> {% endcomment %}
         {% endif %}
         {% if user.is_broker %}
-        <a href="{% url 'simulate_pred' pk=user.pk%}" class="button2">simulate predictions</a>
+        <a href="{% url 'simulate_pred' pk=user.pk%}" class="btn">simulate predictions</a>
         {%else%}
-        <a class='fake_button'>broker only</a>
+        {% comment %} <a class='fake_button'>broker only</a> {% endcomment %}
         {% endif %}
         </p>
 {%endblock%}

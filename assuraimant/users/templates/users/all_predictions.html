@@ -5,7 +5,7 @@
 {% block content %}
 
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <h2 class="text-2xl font-bold mb-4">Hello {{user.first_name}}, here are all the predictions : </h2>
+    <h2 class="text-2xl font-bold mb-4">Hello <strong class="name">{{user.first_name}}</strong>, here are all the predictions : </h2>
     <table id="example" class="table-auto w-full">
         <thead>
             <tr>
@@ -50,7 +50,7 @@
     });
 </script>
 
-<p class='padding_top'><a class="button2" href="/profile/">Back</a></p>
+<p class='padding_top'><a class="btn" href="/profile/">Back</a></p>
 
 {% endblock  %}
 
