@@ -125,6 +125,21 @@ nav.inline {
     color: #ffffff;
 }
 
+.btn_blue {
+    background-color: var(--primary-color);
+    color: white;
+    border: 1px solid white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn_blue:hover {
+    background-color: white;
+    color: var(--primary-color);
+}
+
 td{
     border-color: #000;
     border-width: 2px;
