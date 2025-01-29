@@ -1,4 +1,4 @@
-<header class="bg-primary shadow-lg py-4 sticky top-0 z-50">
+<header class="bg-primary shadow-lg min-h-24 py-8 sticky top-0 z-50">
     <div class="container mx-auto flex items-center justify-between px-4">
       <!-- Logo -->
       <a href="{% url "home_view"%}" class="flex items-center text-primary hover:text-secondary">
@@ -39,7 +39,7 @@
             </form>
         
         {% else %}
-        <a class="btn" href="/login/">Log in</a>
+        <a class="btn" href="/login/">Sign in</a>
         <a class="btn" href="/signup">Sign up</a>
         {% endif %}        
     </nav>

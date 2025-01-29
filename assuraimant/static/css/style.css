@@ -140,6 +140,31 @@ nav.inline {
     color: var(--primary-color);
 }
 
+.btn_careful {
+    background-color: white;
+    color: red;
+    border: 1px solid red;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn_careful:hover {
+    background-color: var(--primary-color);
+    color: red;
+}
+
+.fake-button {
+    background-color: rgb(57, 57, 59);
+    color: red;
+    border: 1px solid #007bff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 td{
     border-color: #000;
     border-width: 2px;
@@ -159,5 +184,10 @@ th{
 }
 
 td.bold{
+    font-weight: bold;
+}
+
+.green{
+    color: green;
     font-weight: bold;
 }
