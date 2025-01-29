@@ -1,11 +1,48 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <br>
-    <button class='btn' type="submit">Login</button>
-  </form>
+<div class="min-h-screen flex flex-col justify-center py-6 sm:px-6 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-md">
+      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          Sign in to your account
+      </h2>
+  </div>
+  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+      <div class="bg-blue-100 py-8 px-4 shadow sm:rounded-lg sm:px-10">
+          <form class="space-y-6" method="POST">
+            {% csrf_token %}
+              <div>
+                  <label for="username" class="block text-sm font-medium text-white-700">
+                      Username
+                  </label>
+                  <div class="mt-1">
+                      <input id="username" name="username" type="text" required
+                          class="appearance-none rounded-md relative block w-full px-3 py-2 border border-white-300 placeholder-white-500 text-white-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                          placeholder="Enter your username">
+                  </div>
+              </div>
+
+              <div>
+                  <label for="password" class="block text-sm font-medium text-white-700">
+                      Password
+                  </label>
+                  <div class="mt-1">
+                      <input id="password" name="password" type="password" autocomplete="current-password" required
+                          class="appearance-none rounded-md relative block w-full px-3 py-2 border border-white-300 placeholder-white-500 text-white-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                          placeholder="Enter your password">
+                  </div>
+              </div>
+
+              <div>
+                  <button type="submit"
+                      class="group relative w-full flex justify-center py-2 px-4 btn_blue">
+
+                      Sign in
+                  </button>
+              </div>
+          </form>
+         
+      </div>
+  </div>
+</div>  
 {% endblock %}
