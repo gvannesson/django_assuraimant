@@ -51,13 +51,13 @@ function Predict()
     })
     .then(response => response.json())  // Convertir la réponse en JSON
     .then(data => {
-        document.getElementById('bmi_html').innerText = "Your bmi is "+ data.bmi.toString()+ ".";
+        document.getElementById('bmi_html').innerText = data.bmi.toString();
         discount = document.getElementById('discount_html').value;
         if (discount>0){
-            document.getElementById('prediction').innerText = "Your estimated insurance charges with " + discount + "% discount are $"+ (((data.prediction)*(1-discount/100)).toFixed(2))+ 
+            document.getElementById('prediction_discount').innerText = ((data.prediction)*(1-discount/100)).toFixed(2)+ " ("+discount+"%)" 
             " and without discount $" + data.prediction.toString()+".";
         }
-        else document.getElementById('prediction').innerText = "Your estimated insurance charges are $"+ data.prediction.toString()+ ".";
+        else document.getElementById('prediction').innerText = data.prediction.toString();
          // Affiche le message dans la page
     })
     .catch(error => console.error('Erreur :', error));

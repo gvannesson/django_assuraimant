@@ -182,7 +182,9 @@ class SimulatePredictionView(TemplateView):
     #         return JsonResponse(data)  # Retourne une réponse JSON
     #     return super().get(request, *args, **kwargs)  # Charge le template HTML
     
-
+class AboutUsView(TemplateView):
+    
+    template_name='users/about_us.html'
 
 
     

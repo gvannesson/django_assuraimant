@@ -5,18 +5,18 @@
 {% block content %}
 
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <h2 class="text-2xl font-bold mb-4">Hello <strong class="name">{{user.first_name}}</strong>, here are all the predictions : </h2>
+    <h2 class="text-2xl font-bold mb-4">Estimation database : </h2>
     <table id="example" class="table-auto w-full">
         <thead>
             <tr>
-                <th class="px-4 py-2">Weight</th>
-                <th class="px-4 py-2">Height</th>
-                <th class="px-4 py-2">Smoker</th>
-                <th class="px-4 py-2">Number of children</th>
-                <th class="px-4 py-2">Age</th>
-                <th class="px-4 py-2">Charge</th>
-                <th class="px-4 py-2">Date</th>
-                <th class="px-4 py-2">User</th>
+                <th class="px-4 py-2 border-blue-500 text-blue-500">Weight (kg)</th>
+                <th class="px-4 py-2 border-blue-500 text-blue-500">Height (cm)</th>
+                <th class="px-4 py-2 border-blue-500 text-blue-500">Smoker</th>
+                <th class="px-4 py-2 border-blue-500 text-blue-500">Number of children</th>
+                <th class="px-4 py-2 border-blue-500 text-blue-500">Age</th>
+                <th class="px-4 py-2 border-blue-500 text-blue-500">Charge</th>
+                <th class="px-4 py-2 border-blue-500 text-blue-500">Date</th>
+                <th class="px-4 py-2 border-blue-500 text-blue-500">User</th>
             </tr>
         </thead>
         <tbody>
@@ -24,14 +24,14 @@
             
         {% for prediction in predictions %}
         <tr>
-        <td>{{ prediction.weight }}</td>
-        <td>{{ prediction.height }}</td>
-        <td>{{ prediction.smoker }}</td>
-        <td>{{ prediction.children }}</td>
-        <td>{{ prediction.age }}</td>
-        <td class='bold'>${{ prediction.prediction }}</td>
-        <td>{{ prediction.prediction_date }}</td>
-        <td>{{ prediction.user_id.username }}</td>
+        <td class="border-blue-500">{{ prediction.weight }}</td>
+        <td class="border-blue-500">{{ prediction.height }}</td>
+        <td class="border-blue-500">{{ prediction.smoker }}</td>
+        <td class="border-blue-500">{{ prediction.children }}</td>
+        <td class="border-blue-500">{{ prediction.age }}</td>
+        <td class='bold border-blue-500'><strong class="green">$</strong>{{ prediction.prediction }}</td>
+        <td class="border-blue-500">{{ prediction.prediction_date }}</td>
+        <td class="border-blue-500">{{ prediction.user_id.username }}</td>
         </tr>
         {% endfor %}
            
@@ -50,7 +50,7 @@
     });
 </script>
 
-<p class='padding_top'><a class="btn" href="/profile/">Back</a></p>
+<p class='mt-5 mb-5'><a class="btn" href="/profile/">Back</a></p>
 
 {% endblock  %}
 

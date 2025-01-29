@@ -23,7 +23,6 @@ class AccountChangeForm(forms.ModelForm):
         fields = ['username','email','first_name', 'last_name']
 
 
-
 class Recherche(forms.Form):
     search_by_user = forms.ModelChoiceField(label="Username", queryset=User.objects.all(), required=False)
     search_by_date = forms.DateTimeField(widget=forms.SelectDateWidget(empty_label=("Year", "Month", "Day")),label="Search date", required=False)

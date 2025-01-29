@@ -23,23 +23,22 @@
 
       <div class="links-container">
         <a class="link" href="{% url "home_view"%}">Home</a>
-        <a class="link" href="/about">About Us</a>
-        <a class="link" href="/contact">Contact</a>
+        <a class="link" href="{% url "about_us"%}">About Us</a>
+        <a class="link" href="">Contact</a>
     </div>
 
     <nav>
         {% if user.is_authenticated %}
-        <p class="">Hello <strong class="name">{{ user.username }}</strong>!</p>
-            <form method="post" class="inline" action="{% url 'logout' %}">
-                {% csrf_token %}
-                <button class='btn' type="submit">Logout</button>
-            </form>
+        <p class="mr-4">Hello <strong class="name">{{ user.username }}</strong>!</p>
             <form method="get" class="inline" action="{% url 'display_profile' %}">
                 <button class='btn' type="submit">Account</button>
             </form>
-        
+            <form method="post" class="inline" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button class='btn' type="submit">Logout</button>
+            </form>       
         {% else %}
-        <a class="btn" href="/login/">Sign in</a>
+        <a class="btn" href="/login/">Login</a>
         <a class="btn" href="/signup">Sign up</a>
         {% endif %}        
     </nav>

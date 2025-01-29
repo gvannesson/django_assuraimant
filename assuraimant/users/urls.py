@@ -1,7 +1,7 @@
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.urls import path, reverse_lazy
 from .views import HomeView, CreateUserViews, DisplayProfileView, UserUpdateView, AccountUpdateView, HistoryView
-from .views import HomeView, CreateUserViews, PredictionView, AllPredictionsView, SimulatePredictionView, DeleteUserView
+from .views import HomeView, CreateUserViews, PredictionView, AllPredictionsView, SimulatePredictionView, DeleteUserView, AboutUsView
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home_view'),
@@ -17,5 +17,6 @@ urlpatterns = [
     path ("all_prediction/", AllPredictionsView.as_view(), name="all_predictions"),
     path ("simulate_prediction/<int:pk>/", SimulatePredictionView.as_view(), name="simulate_pred"),
     path("delete_user/<int:pk>/", DeleteUserView.as_view(), name='delete_user'), 
+    path("about_us/", AboutUsView.as_view(), name="about_us")
 ]
 
