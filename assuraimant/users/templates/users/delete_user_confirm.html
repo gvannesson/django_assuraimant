@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Delete user confirm page</h2>
+
+<form  method='post'>
+    {% csrf_token %}
+    <button type='submit' class='btn btn-danger'><i class="fa-solid fa-user-xmark"></i>Delete account</button>
+</form>
+<br>
+<a href="{% url 'display_profile' %}" class="btn">Cancel</a>
+{% endblock content %}

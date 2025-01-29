@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView, ListView
-from django.views.generic.edit import CreateView, FormView
+from django.views.generic.edit import CreateView, FormView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from assuraimant.models import User, Prediction
 from django.views.generic.edit import CreateView, UpdateView
@@ -11,7 +11,7 @@ from datetime import date
 from django.shortcuts import redirect
 from django.http import JsonResponse
 import json
-
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 def calculate_age(date_of_birth):
@@ -51,6 +51,12 @@ class UserUpdateView(UpdateView, LoginRequiredMixin):
     form_class=UserChangeForm
     template_name = 'users/user_update.html'  # Le template à utiliser pour le formulaire
     success_url = reverse_lazy('display_profile')  # L'URL vers laquelle rediriger après la mise à jour réussie
+
+class DeleteUserView(DeleteView):
+    model = User
+    template_name= 'users/delete_user_confirm.html'
+    success_message='Your account has been deleted'
+    success_url = reverse_lazy('home_view')
 
 class AccountUpdateView(UpdateView, LoginRequiredMixin):
     model = User  # Le modèle que l'on souhaite mettre à jour
