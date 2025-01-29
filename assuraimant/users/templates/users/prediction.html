@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title%}Prédiction{%endblock%}
+{% block title%}Prediction{%endblock%}
 
 {% block content%}
-    <h2>Make a prediction</h2>
-        <p><strong>{{ test }}</strong></p>
-        <p>Your predicted charges are <strong class="green">${{ prediction }}</strong>.</p>     
-        <p><a class="btn" href="/profile/">Back</a></p>
+    <h2 class="mt-15 mb-10 text-4xl font-extrabold text-blue-500 uppercase text-center">My estimated charges :</h2>
+        <p class="mb-10">Your predicted charges are <strong class="green">${{ prediction }}</strong>.</p>     
+        <a class="btn mt-20" href="/profile/">Back</a>
 {%endblock%}

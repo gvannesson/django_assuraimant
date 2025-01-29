@@ -82,8 +82,11 @@ class PredictionView(LoginRequiredMixin, TemplateView):
         model = cloudpickle.load(open("users/best_model.pkl", 'rb'))
         
         context["test"] = f"Bonjour, {user.first_name}. Voici votre prédiction de prime d'assurance : " 
-        context["prediction"] = model.predict(client_array).round(2)
+        context["prediction"] = model.predict(client_array)[0].round(2)
 
+        user.last_charge_prediction = context["prediction"]
+        user.save()
+        
         pred= Prediction()
         pred.height = user.height
         pred.weight = user.weight

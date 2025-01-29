@@ -11,7 +11,7 @@ class User(AbstractUser):
     sex=models.CharField(choices=[("female", "Female"), ("male", "Male")], verbose_name='sex', default="male", max_length=10)
     children=models.PositiveIntegerField(verbose_name="number of children", validators=[MinValueValidator(0), MaxValueValidator(20)], default=0)
     last_charge_prediction=models.FloatField(verbose_name="Last prediction", default=0)
-    is_client=models.BooleanField(verbose_name='client', default=0)
+    is_client=models.BooleanField(verbose_name='client', default=1)
     is_broker=models.BooleanField(verbose_name='Broker', default=0)
     date_of_birth = models.DateField(null=True, blank=True)
 

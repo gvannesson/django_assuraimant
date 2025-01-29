@@ -3,9 +3,7 @@
 {% block title %}Your history{% endblock %}
 
 {% block content %}
-
-    <ul>
-        Hello {{user.first_name}}, here is your prediction history:
+<h2 class="primary-color mb-10">My History :</h2>
         <table class='table bg-red-50'>
             <tr>
               <th>Weight</th>
@@ -31,5 +29,5 @@
           </table>
 
         <p class='padding_top'><a class="btn" href="/profile/">Back</a></p>
-    </ul>
+
 {% endblock %}
