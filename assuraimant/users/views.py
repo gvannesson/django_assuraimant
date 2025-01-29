@@ -52,7 +52,7 @@ class UserUpdateView(UpdateView, LoginRequiredMixin):
     template_name = 'users/user_update.html'  # Le template à utiliser pour le formulaire
     success_url = reverse_lazy('display_profile')  # L'URL vers laquelle rediriger après la mise à jour réussie
 
-class DeleteUserView(DeleteView):
+class DeleteUserView(SuccessMessageMixin, DeleteView):
     model = User
     template_name= 'users/delete_user_confirm.html'
     success_message='Your account has been deleted'

@@ -17,6 +17,13 @@
     </div>
     <div class="content">
         <main>
+            {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+            {% endif %}
             {% block content %}{% endblock %}
         </main>            
     </div>
