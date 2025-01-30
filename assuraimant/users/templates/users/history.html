@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-  <h2 class="text-2xl font-bold mb-4">Hello <strong class="name">{{user.first_name}}</strong>, here are all your estimations : </h2>
+  <h2 class="text-2xl font-bold mb-4">Hello <strong class="text-blue-500">{{user.first_name | capfirst }}</strong>, here are all your estimations : </h2>
   <table id="example" class="table-auto w-full mt-8">
       <thead>
           <tr>
