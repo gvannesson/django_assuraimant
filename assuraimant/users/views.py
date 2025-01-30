@@ -175,5 +175,9 @@ class SimulatePredictionView(TemplateView):
             return redirect('/profile/')
         return super().dispatch(request, *args, **kwargs)
 
+    
+class AboutUsView(TemplateView):
+    template_name='users/about_us.html'
+
 
     

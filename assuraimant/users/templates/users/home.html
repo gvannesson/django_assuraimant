@@ -1,30 +1,37 @@
 {% extends 'base.html'%}
 
 
-
 {% block content%}
 <div class="w-screen h-screen overflow-hidden relative before:block before:absolute before:bg-black before:h-full before:w-full before:top-0 before:left-0 before:z-10 before:opacity-30">
     <img src="https://images.unsplash.com/photo-1549057446-9f5c6ac91a04?q=80&w=1934&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="absolute top-0 left-0 min-h-full ob" alt="">
     <div class="relative z-20 max-w-screen-lg mx-auto grid grid-cols-12 h-full items-center">
       <div class="col-span-6">
-        <span class="uppercase text-white text-xs font-bold mb-2 block">ASSUR'AIMANT</span>
+        <div class="col-span-6 flex items-center justify-center gap-2">
+          <svg class="w-8 text-white" viewBox="0 0 24 24" stroke-linejoin="round" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" stroke="currentColor" fill="none">
+              <rect x="3" y="1" width="7" height="12"></rect>
+              <rect x="3" y="17" width="7" height="6"></rect>
+              <rect x="14" y="1" width="7" height="6"></rect>
+              <rect x="14" y="11" width="7" height="12"></rect>
+          </svg>    
+          <span class="uppercase text-white text-xl font-bold">ASSUR'AIMANT</span>
+      </div>
         <h1 class="text-white font-extrabold text-5xl mb-8">Your favorite insurance company</h1>
         <p class="text-stone-100 text-base">
           Sign up for free and estimate your insurance charges!
         </p>
         <br>
-        <a href="/login/" class="mt-8 text-white uppercase py-4 text-base font-light px-20 border border-white hover:bg-white hover:bg-opacity-10">Get started</a>
+        <a href="/login/" class="mt-8 btn">Get started</a>
       </div>
     </div>
   </div>
-  <div class="bg-[#f7d0b6] py-20">
+  <div class="bg-blue-500 py-20 w-screen">
     <div class="max-w-screen-lg mx-auto flex justify-between items-center">
       <div class="max-w-xl">
-        <h2 class="font-black text-sky-950 text-3xl mb-4">As the leading experts in this field, we're in over 90 countries</h2>
-        <p class="text-base text-sky-950">Join us to be covered by the best insurance.</p>
+        <h2 class="font-black text-white text-3xl mb-4">As the leading experts in this field, we're in over 90 countries.</h2>
+        <p class="text-base text-white">Join us to be covered by the best insurance.</p>
       </div>
-      <a  class="text-sky-950 uppercase py-3 text-base px-10 border border-sky-950 hover:bg-sky-950 hover:bg-opacity-10" href="/login/">Get started</a>
-    </div>
+      <a  class="uppercase btn" href="/login/">Get started</a>
+  </div>
   
  
 {%endblock%}
