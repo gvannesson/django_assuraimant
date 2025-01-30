@@ -74,7 +74,7 @@ class UserUpdateView(UpdateView, LoginRequiredMixin):
 class DeleteUserView(SuccessMessageMixin, DeleteView):
     model = User
     template_name= 'users/delete_user_confirm.html'
-    success_message='Your account has been deleted'
+    success_message='Your account has been deleted successfully!'
     success_url = reverse_lazy('home_view')
 
 class AccountUpdateView(UpdateView, LoginRequiredMixin):
@@ -150,7 +150,7 @@ class SimulatePredictionView(TemplateView):
             data = json.loads(request.body)  # Parse le corps de la requête en JSON
 
             # Traiter les données
-            if data:
+            if data:  
                 region = data["region"]
                 bmi = float(data["weight"]) / ((float(data["height"])/100)**2)
                 age = calculate_age(data["date_of_birth"])
@@ -160,7 +160,7 @@ class SimulatePredictionView(TemplateView):
                 model = cloudpickle.load(open("users/best_model.pkl", 'rb'))
                 prediction_ = model.predict(client_array).round(2)
 
-                return JsonResponse({"prediction": prediction_[0], 'bmi':round(bmi,2)}, status=200)
+                return JsonResponse({"prediction": prediction_[0], 'bmi':round(bmi,2)}, status=200) #renvoie une JSON response, un dictionnaire avec 2 clés
             else:
                 response_data = {
                     'message': "Aucune donnée reçue",

@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const inputs = document.querySelectorAll(".pred"); // Sélectionne tous les éléments avec la classe "pred"
 
-    inputs.forEach(function(element) {
+    inputs.forEach(function(element) { //pour chaque input dans la liste, il y a 2 listeners, (change et keyup), quand ces événements sont enclenchés, la fonction Predict est appelée
         element.addEventListener("change", Predict); // Ajoute l'événement "change"
         element.addEventListener("keyup", Predict);
         
@@ -26,12 +26,12 @@ function getCookie(name) {
     return cookieValue;
 }
 
-function Predict()
+function Predict() //déf de la fonction Preduct
 {
-    const url = JSON.parse(document.getElementById('json_url').textContent)
+    const url = JSON.parse(document.getElementById('json_url').textContent) //récupère l'url de la page
 
     const data_construct = {
-        "date_of_birth" : document.getElementById("date_birth").value,
+        "date_of_birth" : document.getElementById("date_birth").value,  // récupère la valeur de l'élément dans le html avec l'ID "date_birth"
         "weight" : document.getElementById("weight").value,
         "height" : document.getElementById("height").value,
         "sex" : document.getElementById("sex").value,
@@ -42,16 +42,16 @@ function Predict()
     }
 
     fetch(url, {
-        method: 'POST',
-        headers: {
+        method: 'POST', //envoie une requête POST
+        headers: {   //définit que ça envoie du JSON
             'Content-Type': 'application/json',
             'X-CSRFToken': getCookie('csrftoken')  // Ajoute le token CSRF
         },
-        body: JSON.stringify(data_construct)
+        body: JSON.stringify(data_construct) //body: les infos envoyés, càd le dictionnaire transformé en JSON (JSON.stringify trasnsforme la donnée d'entrée en JSON)
     })
     .then(response => response.json())  // Convertir la réponse en JSON
-    .then(data => {
-        document.getElementById('bmi_html').innerText = data.bmi.toString();
+    .then(data => { // tranforme sur la page HTML la valeur de certains éléments HTML basés sur le dictionnaire reçus de django
+        document.getElementById('bmi_html').innerText = data.bmi.toString(); // met dans HTML la valeur de la clé bmi dans le dictionnaire data
         discount = document.getElementById('discount_html').value;
         if (discount>0){
             document.getElementById('prediction_discount').innerText = ((data.prediction)*(1-discount/100)).toFixed(2)+ " ("+discount+"%)" 
@@ -63,7 +63,7 @@ function Predict()
     .catch(error => console.error('Erreur :', error));
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() { //préremplissage des champs dans le html
     const json_date_of_birth = JSON.parse(document.getElementById('json_date_of_birth').textContent); //va chercher dans le html la variable nommée json_date_of_birth pour afficher les valeurs quand on charge la page
     document.getElementById('date_birth').value=json_date_of_birth;
 
@@ -114,8 +114,3 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 });
-
-function print_user() {
-    const user_name = JSON.parse(document.getElementById('username').textContent);
-    document.getElementsByName('test')[0].value=user_name
-}
