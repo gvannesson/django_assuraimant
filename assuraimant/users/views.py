@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView, ListView
-from django.views.generic.edit import CreateView, FormView, DeleteView
+from django.views.generic.edit import CreateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from assuraimant.models import User, Prediction
 from django.views.generic.edit import CreateView, UpdateView
@@ -12,6 +12,7 @@ from django.shortcuts import redirect
 from django.http import JsonResponse
 import json
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.views import PasswordChangeView
 
 
 
@@ -181,3 +182,7 @@ class SimulatePredictionView(TemplateView):
 class AboutUsView(TemplateView):
     template_name='users/about_us.html'
 
+class CustomPassWordChangeView(PasswordChangeView):
+    success_url = reverse_lazy("password_change_done")
+    template_name = "users/password_change.html"
+    title = ("Password change")
