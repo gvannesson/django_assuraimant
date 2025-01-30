@@ -3,6 +3,8 @@ from django.urls import path, reverse_lazy
 from .views import HomeView, CreateUserViews, DisplayProfileView, UserUpdateView, AccountUpdateView, HistoryView
 from .views import HomeView, CreateUserViews, PredictionView, AllPredictionsView, SimulatePredictionView, DeleteUserView, AboutUsView
 
+#liste de tous les urls du site
+
 urlpatterns = [
     path('', HomeView.as_view(), name='home_view'),
     path('login/', LoginView.as_view(template_name='users/login.html'), name='login'),

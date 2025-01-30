@@ -5,7 +5,7 @@
     <meta name="csrf-token" content="{{ csrf_token }}">
     <script src='{%static "predictions.js" %}'></script>
     {{user.username|json_script:'json_username'}}
-    {{user.date_of_birth|json_script:'json_date_of_birth'}} {% comment %} récupère le user.date_of_birth avec l'id json_date_of_birth {% endcomment %}
+    {{user.date_of_birth|json_script:'json_date_of_birth'}} {% comment %} récupère le user.date_of_birth et l'affecte à l'id json_date_of_birth {% endcomment %}
     {{user.weight|json_script:'json_weight'}}
     {{user.height|json_script:'json_height'}}
     {{user.sex|json_script:'json_sex'}}
