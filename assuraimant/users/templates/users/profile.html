@@ -1,0 +1,115 @@
+{% extends 'base.html'%}
+
+{% block title%}Your profile{%endblock%}
+
+{% block content%}
+<div class="flex flex-wrap justify-center items-start gap-10 mt-10 mb-20">
+    <div
+        class="min-w-[300px] max-w-sm mt-20 p-4 shadow-md rounded-lg border-t-2 border-blue-500">
+        <div class="flex justify-between pb-4 border-b">
+            <p class="font-bold text-xl primary-color">My profile</p>
+        </div>
+        <ul class="flex flex-col pl-1">
+            <li class="border-b py-2 flex justify-between">
+                <span class="font-bold primary-color">Username :</span>
+                <span>{{ user.username }}</span>
+            </li>
+            <li class="border-b py-2 flex justify-between">
+                <span class="font-bold primary-color">First name :</span>
+                <span>{{ user.first_name }}</span>
+            </li>
+            <li class="border-b py-2 flex justify-between">
+                <span class="font-bold primary-color">Last name :</span>
+                <span>{{ user.last_name }}</span>
+            </li>
+            <li class="border-b py-2 flex justify-between">
+                <span class="font-bold primary-color">Email :</span>
+                <span>{{ user.email }}</span>
+            </li>
+        </ul>
+        <ul class="mt-5 mb-2 flex flex-col items-center gap-5">
+            <li><a href="{% url 'account_update' pk=user.pk%}" class="btn">Update my profile</a></li>         
+            <li><a href="{% url 'password_change' %}" class="btn">Change password</a></li>
+        </ul>            
+    </div>
+
+    <div
+        class="min-w-[300px] max-w-sm mt-20 p-4 shadow-md rounded-lg border-t-2 border-blue-500">
+        <div class="flex justify-between pb-4 border-b">
+            <p class="font-bold text-xl primary-color">My insurance</p>
+        </div>
+        <ul class="flex flex-col pl-1">
+            <li class="border-b py-2 flex justify-between">
+                <span class="font-bold primary-color">Date of birth :</span>
+                <span>{{ user.date_of_birth }}</span>
+            </li>
+            <li class="border-b py-2 flex justify-between">
+                <span class="font-bold primary-color">Sex :</span>
+                <span>{{ user.get_sex_display }}</span>
+            </li>
+            <li class="border-b py-2 flex justify-between">
+                <span class="font-bold primary-color">Smoker :</span>
+                <span>{{ user.get_smoker_display }}</span>
+            </li>
+            <li class="border-b py-2 flex justify-between">
+                <span class="font-bold primary-color">Weight :</span>
+                <span>{{ user.weight }}kg</span>
+            </li>
+            <li class="border-b py-2 flex justify-between">
+                <span class="font-bold primary-color">Height :</span>
+                <span>{{ user.height }}cm</span>
+            </li>
+            <li class="border-b py-2 flex justify-between">
+                <span class="font-bold primary-color">Number of children :</span>
+                <span>{{ user.children }}</span>
+            </li>
+            <li class="border-b py-2 flex justify-between">
+                <span class="font-bold primary-color">Home region :</span>
+                <span>{{ user.get_region_display }}</span>
+            </li>
+            <li class="border-b py-2 flex justify-between">
+                <span class="font-bold primary-color">Current prediction :</span>
+                <span>${{ user.last_charge_prediction }}</span>
+            </li>
+        </ul>
+        <ul class="mt-5 mb-2 flex flex-col items-center gap-5">
+            <li><a href="{% url 'user_update' pk=user.pk%}" class="btn">Update my insurance informations</a></li>
+        </ul>  
+    </div>
+    
+    <div
+    class="min-w-[300px] max-w-sm mt-20 p-4 shadow-md rounded-lg border-t-2 border-blue-500">
+    <div class="flex justify-between pb-4 border-b">
+        <p class="font-bold text-xl primary-color">Actions</p>
+    </div>
+    <ul class="flex flex-col pl-1">
+        
+            {% if user.date_of_birth and user.is_client %}
+            <li class="border-b py-2 flex justify-between">    
+                <a href="{% url 'prediction' %}" class="btn">Make a prediction</a>
+            </li>
+            {%elif user.is_client%}
+            <li class="border-b py-2 flex justify-between"> 
+                <p class="text-red-500">Update your informations to make a prediction.</p> 
+                <a class='fake-button'>Make a prediction</a>
+            </li>
+            {% endif %}       
+            {%if predictions %}
+            <li class="border-b py-2 flex justify-between">          
+                <a href="{% url 'history' %}" class="btn">Prediction history</a>            
+            </li>
+            {% endif %}
+            {% if user.is_staff %}
+            <li class="border-b py-2 flex justify-between">
+                <a href="{% url 'all_predictions' %}" class="btn">Check all predictions</a>
+            </li>
+            {% endif %}
+            {% if user.is_broker %}
+            <li class="border-b py-2 flex justify-between">
+                <a href="{% url 'simulate_pred' pk=user.pk%}" class="btn">Charges simulations</a>
+            </li>
+            {% endif %}
+    </div>
+</div>
+
+{%endblock%}

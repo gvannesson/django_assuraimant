@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% load static%}
+{% block content %}
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <script src='{%static "predictions.js" %}'></script>
+    {{user.username|json_script:'json_username'}}
+    {{user.date_of_birth|json_script:'json_date_of_birth'}} {% comment %} récupère le user.date_of_birth et l'affecte à l'id json_date_of_birth {% endcomment %}
+    {{user.weight|json_script:'json_weight'}}
+    {{user.height|json_script:'json_height'}}
+    {{user.sex|json_script:'json_sex'}}
+    {{user.smoker|json_script:'json_smoker'}}
+    {{user.region|json_script:'json_region'}}
+    {{user.children|json_script:'json_children'}}
+    {{ request.get_full_path|json_script:'json_url'}}
+
+    <h2 class="mt-12 mb-5 text-4xl font-extrabold text-blue-500 uppercase text-center">Make estimation :</h2>
+     
+    <div class="flex items-center justify-center mb-10">
+    <div
+    class="min-w-[300px] max-w-sm mt-20 p-4 shadow-md rounded-lg border-t-2 border-blue-500">
+    <div class="flex justify-between pb-4 border-b">
+        <p class="font-bold text-xl primary-color">Client infos :</p>
+    </div>
+    <ul class="flex flex-col pl-1">
+        <li class="border-b py-2 flex justify-between">
+            <label class="primary-color"  for="date_birth">Date of birth: </label>
+            <input class="pred p-2 border border-blue-500 rounded" id='date_birth' name='date_birth' type="date">
+        </li>
+        <li class="border-b py-2 flex justify-between">
+            <label class="primary-color"  for="weight">Weight (kg) : </label>
+            <input class="pred p-2 border border-blue-500 rounded" id='weight' name='weight' type="Number" min=0 max=800>
+        </li>
+        <li class="border-b py-2 flex justify-between">
+            <label class="primary-color"  for="height">Height (cm) : </label>
+            <input class="pred p-2 border border-blue-500 rounded" id='height' name='height' type="Number" min=0 max=250>
+        </li>
+        <li class="border-b py-2 flex justify-between">
+            <p class="primary">BMI : </p>
+            <div id="bmi_html"></div>
+        </li>
+        <li class="border-b py-2 flex justify-between">
+            <label class="primary-color"  for="sex">Gender: </label>  
+            <select class="pred p-2 border border-blue-500 rounded" id="sex" name="choices">
+                <option value="male" id="sex_option_1">Male</option>
+                <option value="female" id="sex_option_2">Female</option>
+            </select>
+        </li>
+        <li class="border-b py-2 flex justify-between">
+            <label class="primary-color"  for="smoker">Smoker </label>
+            <select class="pred p-2 border border-blue-500 rounded" id="smoker" name="choices">
+                <option value="yes" id="smoker_option_1">Yes</option>
+                <option value="no" id="smoker_option_2">No</option>
+            </select>
+        </li>
+        <li class="border-b py-2 flex justify-between">
+            <label class="primary-color"  for="region">Area of Origin : </label>
+            <select class="pred p-2 border border-blue-500 rounded" id="region" name="choices">
+                <option value="northeast" id="region_option_1">Northeast</option>
+                <option value="northwest" id="region_option_2">Northwest</option>
+                <option value="southeast" id="region_option_3">Southeast</option>
+                <option value="southwest" id="region_option_4">Southwest</option>
+            </select>
+        </li>
+        <li class="border-b py-2 flex justify-between">
+            <label class="primary-color"  for="children">Children: </label>
+            <input class="pred p-2 border border-blue-500 rounded" id='children' name='children' type="Number" min=0 max=30>
+        </li>
+        <li class="border-b py-2 flex justify-between">
+            <label class="primary-color"  for="discount_html">Discount (%) : </label>
+            <input class="pred p-2 border border-blue-500 rounded" id='discount_html' name='discount_html' type="Number" value=0 min=0 max=99>
+        </li>
+        <li class="border-b py-2 flex justify-between">
+            <p>Estimation ($) : </p>
+            <div id="prediction"></div>
+        </li>
+        <li class="border-b py-2 flex justify-between">
+            <div></div>
+            <div id="prediction_discount"></div>
+        </li>
+   
+    </ul>
+</div>
+</div>
+        <p><a class="btn mt-10" href="/profile/">Back</a></p>
+    {% endblock %}
+
