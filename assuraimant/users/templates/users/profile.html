@@ -82,21 +82,14 @@
     <div class="flex justify-between pb-4 border-b">
         <p class="font-bold text-xl primary-color">Actions</p>
     </div>
-    <ul class="flex flex-col pl-1">
-        
-            {% if user.date_of_birth and user.is_client %}
-            <li class="border-b py-2 flex justify-between">    
-                <a href="{% url 'prediction' %}" class="btn">Make a prediction</a>
-            </li>
-            {%elif user.is_client%}
-            <li class="border-b py-2 flex justify-between"> 
-                <p class="text-red-500">Update your informations to make a prediction.</p> 
-                <a class='fake-button'>Make a prediction</a>
-            </li>
-            {% endif %}       
+    <ul class="flex flex-col pl-1">    
             {%if predictions %}
             <li class="border-b py-2 flex justify-between">          
                 <a href="{% url 'history' %}" class="btn">Prediction history</a>            
+            </li>
+            {%else%}
+            <li class="border-b py-2 flex justify-between">          
+                <p class="text-red-500">Fill in your personal information to make your first estimation</p>         
             </li>
             {% endif %}
             {% if user.is_staff %}

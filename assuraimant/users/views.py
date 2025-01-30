@@ -68,7 +68,7 @@ class UserUpdateView(UpdateView, LoginRequiredMixin):
     model = User
     form_class=UserChangeForm
     template_name = 'users/user_update.html'
-    success_url = reverse_lazy('display_profile')  
+    success_url = reverse_lazy('prediction')  
 
 class DeleteUserView(SuccessMessageMixin, DeleteView):
     model = User
