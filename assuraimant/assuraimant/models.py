@@ -29,7 +29,7 @@ class User(AbstractUser):
     """
     weight=models.PositiveIntegerField(verbose_name='weight', validators=[MinValueValidator(0), MaxValueValidator(800)], default=0)
     height=models.PositiveIntegerField(verbose_name='height', validators=[MinValueValidator(50), MaxValueValidator(250)], default=50)
-    region=models.IntegerField(verbose_name='Home region',choices=[(1,'northeast'),(2,'northwest'),(3,'southeast'),(4,'southwest')], default=1)
+    region=models.IntegerField(verbose_name='Home region',choices=[(1,'Northeast'),(2,'Northwest'),(3,'Southeast'),(4,'Southwest')], default=1)
     smoker=models.CharField(choices=[("no", "No"), ("yes", "Yes")], verbose_name='smoker', default="no", max_length=10)
     sex=models.CharField(choices=[("female", "Female"), ("male", "Male")], verbose_name='sex', default="male", max_length=10)
     children=models.PositiveIntegerField(verbose_name="number of children", validators=[MinValueValidator(0), MaxValueValidator(20)], default=0)

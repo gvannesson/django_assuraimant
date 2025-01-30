@@ -90,11 +90,12 @@ class PredictionView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs) -> dict[str, any]:
         context = super().get_context_data(**kwargs)
         user = self.request.user
-        region = "northeast" if user.region == 1 else "northwest" if user.region == 2 else "southeast" if user.region == 3 else "southwest"
+        region =  self.request.user.get_region_display().lower()
+        # "northeast" if user.region == 1 else "northwest" if user.region == 2 else "southeast" if user.region == 3 else "southwest"
         bmi = user.weight / (user.height/100)**2
         
         age = calculate_age(user.date_of_birth)
-        client=[[age,user.sex, user.children,user.smoker, region, bmi]]
+        client=[[age,user.sex, user.children, user.smoker, region, bmi]]
         client_array= pandas.DataFrame(client, columns=["age","sex","children","smoker","region","bmi"]) #création du pandas avec les caractéristiques voulue par le modèle pickle
         
         model = cloudpickle.load(open("users/best_model.pkl", 'rb')) #chargement du modèle avec pickle
@@ -108,8 +109,8 @@ class PredictionView(LoginRequiredMixin, TemplateView):
         pred= Prediction()
         pred.height = user.height
         pred.weight = user.weight
-        pred.region = user.get_region_display()
-        pred.smoker = user.get_smoker_display()
+        pred.region = user.get_region_display().lower()
+        pred.smoker = user.get_smoker_display().lower()
         pred.sex = user.get_sex_display()
         pred.age = age
         pred.prediction = context['prediction']

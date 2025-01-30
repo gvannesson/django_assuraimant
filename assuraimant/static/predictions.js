@@ -94,15 +94,20 @@ document.addEventListener("DOMContentLoaded", function() {
 
     }
     const json_region = JSON.parse(document.getElementById('json_region').textContent);
-    switch (json_region){
-        case 1:
+
+    switch (json_region.toString()){
+        case "1":
         document.getElementById('region_option_1').selected=true;
-        case 2:
+        break;
+        case "2":
         document.getElementById('region_option_2').selected=true;
-        case 3:
+        break;
+        case "3":
         document.getElementById('region_option_3').selected=true;
-        case 4:
+        break;
+        case "4":
         document.getElementById('region_option_4').selected=true;
+        break;
         
         default:
             console.log("Bad region value")
