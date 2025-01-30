@@ -38,6 +38,13 @@
                 <button class='btn' type="submit">Logout</button>
             </form>       
         {% else %}
+        {% if messages %}
+        
+        {% for message in messages %}
+            <p class="text-white">{{ message }}</p>
+        {% endfor %}
+        
+        {% endif %}
         <a class="btn" href="/login/">Login</a>
         <a class="btn" href="/signup">Sign up</a>
         {% endif %}        
