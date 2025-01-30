@@ -14,6 +14,7 @@ import json
 from django.contrib.messages.views import SuccessMessageMixin
 
 
+
 def calculate_age(date_of_birth):
     """
     Calculate the age of a person based on their date of birth.
@@ -180,5 +181,3 @@ class SimulatePredictionView(TemplateView):
 class AboutUsView(TemplateView):
     template_name='users/about_us.html'
 
-
-    
