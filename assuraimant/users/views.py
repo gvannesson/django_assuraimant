@@ -90,7 +90,7 @@ class PredictionView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs) -> dict[str, any]:
         context = super().get_context_data(**kwargs)
         user = self.request.user
-        region = "southeast" if user.region == 1 else "southwest" if user.region == 2 else "northeast" if user.region == 3 else "northwest"
+        region = "northeast" if user.region == 1 else "northwest" if user.region == 2 else "southeast" if user.region == 3 else "southwest"
         bmi = user.weight / (user.height/100)**2
         
         age = calculate_age(user.date_of_birth)
